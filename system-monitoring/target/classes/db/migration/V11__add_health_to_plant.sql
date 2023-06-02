@@ -1,0 +1,1 @@
+ALTER TABLE if exists plants ADD if NOT EXISTS health INTEGER ;

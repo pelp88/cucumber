@@ -1,0 +1,1 @@
+ALTER TABLE if exists users ADD if NOT EXISTS email VARCHAR(255) ;

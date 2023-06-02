@@ -1,0 +1,133 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class AbstractDto
+class AuthDto
+class AuthenticationController
+class BeanUtilsHelper
+class CannotBePlantedException
+class ChemicalLevelReadingVisitor
+class ControllerFilter
+class CucumberApplication
+class CucumberApplicationTests
+class CucumberUserDetails
+class EmailSenderConfiguration
+class EmailService
+class Field
+interface FieldApi << interface >>
+class FieldController
+class FieldMapper
+interface FieldRepository << interface >>
+class FieldRqDto
+class FieldRsDto
+interface FieldService << interface >>
+class FieldServiceImpl
+class HumidityIntervalReadingVisitor
+class JpaUserDetailsService
+class JwtTokenFilter
+class JwtTokenUtil
+class KafkaConsumerConfig
+class KafkaProducerConfig
+class ManureLevelReadingVisitor
+class MapperConfig
+class NotFoundException
+class Operation
+interface OperationApi << interface >>
+class OperationController
+class OperationMapper
+interface OperationRepository << interface >>
+class OperationRqDto
+class OperationRsDto
+interface OperationService << interface >>
+class OperationServiceImpl
+class Plant
+interface PlantApi << interface >>
+class PlantController
+class PlantMapper
+interface PlantRepository << interface >>
+class PlantRqDto
+class PlantRsDto
+interface PlantService << interface >>
+class PlantServiceImpl
+class Reading
+class ReadingDto
+class ReadingDtoForCreating
+class ReadingMapper
+interface ReadingRepository << interface >>
+interface ReadingVisitor << interface >>
+interface ReadingsService << interface >>
+class ReadingsServiceImpl
+enum RegularOperation << enumeration >>
+class RegularOperationsGenerator
+interface ReportAPI << interface >>
+class ReportController
+interface ReportService << interface >>
+class ReportServiceImpl
+class RequestFilterConfig
+class RestTemplateConfig
+class RipeningDateReadingVisitor
+enum SoilType << enumeration >>
+class SwaggerConfig
+class Task
+interface TaskApi << interface >>
+class TaskController
+class TaskMapper
+interface TaskRepository << interface >>
+class TaskRqDto
+class TaskRsDto
+interface TaskService << interface >>
+class TaskServiceImpl
+enum TaskStatus << enumeration >>
+class TemperatureIntervalReadingVisitor
+class User
+interface UserApi << interface >>
+class UserController
+class UserExistsException
+class UserMapper
+class UserReportDto
+interface UserRepository << interface >>
+class UserRepositoryTest
+class UserRqDto
+class UserRsDto
+interface UserService << interface >>
+class UserServiceImpl
+class UserServiceImplTest
+class UserSpecification
+class VisitorChain
+class Weather
+interface WeatherApi << interface >>
+class WeatherController
+class WeatherMapper
+interface WeatherRepository << interface >>
+class WeatherRqDto
+class WeatherRsDto
+interface WeatherService << interface >>
+class WeatherServiceImpl
+class WebSecurityConfig
+
+ChemicalLevelReadingVisitor        -[#008200,dashed]-^  ReadingVisitor                    
+FieldController                    -[#008200,dashed]-^  FieldApi                          
+FieldServiceImpl                   -[#008200,dashed]-^  FieldService                      
+HumidityIntervalReadingVisitor     -[#008200,dashed]-^  ReadingVisitor                    
+ManureLevelReadingVisitor          -[#008200,dashed]-^  ReadingVisitor                    
+OperationController                -[#008200,dashed]-^  OperationApi                      
+OperationServiceImpl               -[#008200,dashed]-^  OperationService                  
+PlantController                    -[#008200,dashed]-^  PlantApi                          
+PlantServiceImpl                   -[#008200,dashed]-^  PlantService                      
+ReadingDto                         -[#000082,plain]-^  AbstractDto                       
+ReadingDtoForCreating              -[#000082,plain]-^  AbstractDto                       
+ReadingsServiceImpl                -[#008200,dashed]-^  ReadingsService                   
+ReportController                   -[#008200,dashed]-^  ReportAPI                         
+ReportServiceImpl                  -[#008200,dashed]-^  ReportService                     
+RipeningDateReadingVisitor         -[#008200,dashed]-^  ReadingVisitor                    
+TaskController                     -[#008200,dashed]-^  TaskApi                           
+TaskServiceImpl                    -[#008200,dashed]-^  TaskService                       
+TemperatureIntervalReadingVisitor  -[#008200,dashed]-^  ReadingVisitor                    
+UserController                     -[#008200,dashed]-^  UserApi                           
+UserServiceImpl                    -[#008200,dashed]-^  UserService                       
+WeatherController                  -[#008200,dashed]-^  WeatherApi                        
+WeatherServiceImpl                 -[#008200,dashed]-^  WeatherService                    
+@enduml

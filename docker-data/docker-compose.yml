@@ -1,0 +1,68 @@
+version: "3"
+services:
+  postgres_cucumber:
+    container_name: postgres_cucumber
+    image: postgres:12
+    environment:
+      POSTGRES_DB: cucumber
+      POSTGRES_USER: cucumber
+      POSTGRES_PASSWORD: cucumber
+    ports:
+      - "5443:5432"
+
+
+  cucumber_emulator:
+    container_name: cucumber_emulator
+    image: registry.codeinside.ru/cucumber/cucumber:emulator
+    depends_on:
+      - postgres_cucumber
+    environment:
+      - DATASOURCE_HOST=postgres_cucumber
+      - DATASOURCE_PORT=5432
+      - DB_USER=cucumber
+      - DB_PASSWORD=cucumber
+      - SERVER_PORT=8081
+      - CONSUMER_HOST=kafka
+      - PRODUCER_HOST=kafka
+    ports:
+      - "8090:8090"
+
+  cucumber_back:
+    container_name: cucumber_back
+    image: registry.codeinside.ru/cucumber/cucumber:latest
+    depends_on:
+      - postgres_cucumber
+    environment:
+      - DATASOURCE_HOST=postgres_cucumber
+      - DATASOURCE_PORT=5432
+      - DB_USER=cucumber
+      - DB_PASSWORD=cucumber
+      - SERVER_PORT=8081
+      - CONSUMER_HOST=kafka
+      - PRODUCER_HOST=kafka
+    ports:
+      - "8081:8081"
+
+  zookeeper:
+    container_name: zookeeper_docker
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "22181:2181"
+
+  kafka:
+    container_name: kafka_docker
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zookeeper
+    ports:
+      - "29092:29092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://kafka:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
